@@ -1,0 +1,28 @@
+{
+  "name": "node_demo",
+  "version": "1.0.0",
+  "description": "node learn",
+  "main": "index.ts",
+  "scripts": {
+    "dev": "node lib/index.js –experimental-modules",
+    "build": "rollup -c",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "xuyaqin",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-typescript": "^9.0.2",
+    "@types/node": "^18.11.9",
+    "rollup": "^3.3.0",
+    "rollup-plugin-cleandir": "^2.0.0",
+    "tslib": "^2.4.1",
+    "typescript": "^4.9.3"
+  },
+  "dependencies": {
+    "pg": "^8.8.0"
+  }
+}
