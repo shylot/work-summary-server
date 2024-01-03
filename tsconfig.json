@@ -1,10 +1,35 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "es5",
-    "sourceMap": true
-  },
-  "exclude": [
-    "node_modules"
-  ]
-}
+    "compilerOptions": {
+      "target": "es6",
+      "module": "commonjs", // "esnext"
+      "strict": true,
+      "esModuleInterop": true,
+      "importHelpers": true,
+      "moduleResolution": "node",
+      "experimentalDecorators": true,
+      "skipLibCheck": true,
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "noEmit": false,
+      "incremental": true,
+      "noEmitHelpers": true,
+      "noEmitOnError": true,
+      "noErrorTruncation": true,
+      "noFallthroughCasesInSwitch": true,
+      "noImplicitAny": false,
+      "noImplicitReturns": true,
+      "noImplicitThis": true,
+      "noStrictGenericChecks": false,
+      "removeComments": false,
+      "sourceMap": true,
+      "outDir": "./dist",
+      "allowJs": true,
+      "inlineSourceMap": false,
+      "inlineSources": false,
+      "emitDecoratorMetadata": true,
+      "skipDefaultLibCheck": false,
+      "lib": ["es2017", "dom"],
+    },
+    "exclude": ["node_modules"],
+    "include": ["src/**/*"], // 包含你的源代码文件
+  }
