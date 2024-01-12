@@ -37,12 +37,18 @@ app.post('/import', upload.single('file'), async (req: any, res: any) => {
     const workbook = XLSX.readFile(req.file.path);
     // 获取第一个工作表的数据
     const worksheetName = workbook.SheetNames[0];
-    const data: any[] = XLSX.utils.sheet_to_json(workbook.Sheets[worksheetName]) || [];
+    const data: any[] = XLSX.utils.sheet_to_json(workbook.Sheets[worksheetName], { date_format: 'w'}) || [];
     console.log(data)
     const keys: string[] = Object.keys(data[0]);
     const list: IDBSheetItem[] = [];
     data.forEach((item: any, index: number) => {
-        const dateTime: number = Number(item[keys[1]]);
+        const excelDateTime: number = item[keys[3]];
+        // Excel日期的起始点：1899-11-30
+        /*const date: Date = new Date(1899, 11, 30);
+        date.setUTCDate(date.getUTCDate() + excelDateTime);*/
+        // 将Excel时间格式转换为1970年1月1日以来的天数
+        const daysSince1970 = excelDateTime / 86400;
+        const date: Date = new Date(Date.UTC(1900, 0, daysSince1970));
         const it: IDBSheetItem = {
             issueId: item[keys[0]],
             title: item[keys[1]],
@@ -50,8 +56,7 @@ app.post('/import', upload.single('file'), async (req: any, res: any) => {
             projectId: item[keys[18]],
             projectName: item[keys[19]],
             log: item[keys[22]],
-            // 将Excel时间转换为JavaScript时间
-            date: new Date(dateTime * 24 * 60 * 60 * 1000),
+            date,
         }
         list.push(it);
     });

@@ -1,6 +1,7 @@
 # 文件夹
 node_modules
 dist
+uploads
 .idea
 # 文件
 yarn.lock
